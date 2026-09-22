@@ -122,7 +122,8 @@ pub struct StopSession<'info> {
     )]
     pub node: Account<'info, Node>,
 
-    // On vérifie que le signataire est soit le propriétaire du client, soit du nœud
+
+    // we verify that signer is the owner (client or node)
     #[account(
         constraint = user.key() == client.client_key || user.key() == node.node_key @ ErrorCode::Unauthorized
     )]
