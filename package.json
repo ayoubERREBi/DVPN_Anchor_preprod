@@ -1,0 +1,20 @@
+{
+  "name": "dvpn-v0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "<rabiiayoub100@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
+    "@types/bn.js": "^5.2.0",
+    "@types/chai": "^5.2.3",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^26.6.2",
+    "chai": "^6.2.2",
+    "mocha": "^12.0.2",
+    "ts-mocha": "^11.1.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.3.3"
+  }
+}
