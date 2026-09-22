@@ -4,14 +4,14 @@ import { Dvpn } from "../target/types/dvpn";
 import { assert } from "chai";
 
 describe("dvpn", () => {
-  // Configuration du provider local
+  // local provider config
   const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
 
   const program = anchor.workspace.Dvpn as Program<Dvpn>;
   const user = provider.wallet;
 
-  // Dérivation des adresses PDA pour le nœud et le client
+  // node and client PDA derivation
   const [nodePda] = anchor.web3.PublicKey.findProgramAddressSync(
     [Buffer.from("node"), user.publicKey.toBuffer()],
     program.programId
@@ -32,7 +32,7 @@ describe("dvpn", () => {
     program.programId
   );
 
-  it("Crée un nœud dVPN", async () => {
+  it("Create Node", async () => {
     const wgKey = "wg_key_node_12345678901234567890123456789012";
     const priceHour = new anchor.BN(1000);
 
@@ -51,7 +51,7 @@ describe("dvpn", () => {
     assert.isTrue(nodeAccount.isActive);
   });
 
-  it("Crée un client dVPN", async () => {
+  it("Create client", async () => {
     const wgKey = "wg_key_client_12345678901234567890123456789";
 
     await program.methods
@@ -68,7 +68,7 @@ describe("dvpn", () => {
     assert.isFalse(clientAccount.inSession);
   });
 
-  it("Démarre une session", async () => {
+  it("Start session", async () => {
     await program.methods
       .startSession(sessionId)
       .accounts({
@@ -87,7 +87,7 @@ describe("dvpn", () => {
     assert.isTrue(nodeAccount.inSession);
   });
 
-  it("Arrête la session", async () => {
+  it("End session", async () => {
     await program.methods
       .stopSession()
       .accounts({
